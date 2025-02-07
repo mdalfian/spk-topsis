@@ -21,13 +21,7 @@
     <link href="<?= base_url('template/') ?>css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <!-- <link href="<?= base_url('template/') ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
-
-    <!-- <link href="https://cdn.datatables.net/v/bs4/dt-2.1.2/b-3.1.0/b-html5-3.1.0/b-print-3.1.0/datatables.min.css"
-        rel="stylesheet"> -->
-
-    <link href="https://cdn.datatables.net/v/bs4/dt-2.1.2/b-3.1.0/b-colvis-3.1.0/b-html5-3.1.0/datatables.min.css"
-        rel="stylesheet">
+    <link href="<?= base_url('template/') ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <!-- Select2 -->
     <link rel="stylesheet" href="<?= base_url('template/') ?>vendor/select2/select2.min.css">
@@ -71,6 +65,16 @@
                 <a class="nav-link" href="<?= base_url('Admin/sub_kriteria') ?>">
                     <i class="fas fa-cubes"></i>
                     <span>Sub Kriteria</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item <?= $title == 'Alternatif' ? 'active' : "" ?>">
+                <a class="nav-link" href="<?= base_url('Admin/alternatif') ?>">
+                    <i class="fas fa-users"></i>
+                    <span>Alternatif</span></a>
             </li>
 
             <!-- Divider -->
@@ -212,13 +216,13 @@
         <script src="<?= base_url('template/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Page level plugins -->
-        <!-- <script src="<?= base_url('template/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
- <script src="<?= base_url('template/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+        <script src="<?= base_url('template/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="<?= base_url('template/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/v/bs4/dt-2.1.2/b-3.1.0/b-colvis-3.1.0/b-html5-3.1.0/datatables.min.js">
-        </script>
+        <!-- <script src="https://cdn.datatables.net/v/bs4/dt-2.1.2/b-3.1.0/b-colvis-3.1.0/b-html5-3.1.0/datatables.min.js">
+        </script> -->
 
 
         <!-- <script src="https://cdn.datatables.net/v/bs4/dt-2.1.2/b-3.1.0/b-html5-3.1.0/b-print-3.1.0/datatables.min.js"></script>
@@ -237,6 +241,7 @@
         <script src="<?= base_url('template/') ?>vendor/select2/select2.min.js"></script>
 
         <script>
+        // Logout
         function con() {
             Swal.fire({
                 title: 'Apakah anda yakin?',
@@ -252,7 +257,87 @@
                 }
             })
         }
+
+        // Hapus Kriteria
+        function hapus_kriteria(id) {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan menghapus kriteria!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '<?= base_url('Admin/kriteria/delete/') ?>' + id;
+                }
+            })
+        }
+
+        // Hapus Sub Kriteria
+        function hapus_sub_kriteria(id) {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan menghapus sub kriteria!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '<?= base_url('Admin/sub_kriteria/delete/') ?>' + id;
+                }
+            })
+        }
+
+        // Hapus Alternatif
+        function hapus_alternatif(id) {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan menghapus alternatif!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '<?= base_url('Admin/alternatif/delete/') ?>' + id;
+                }
+            })
+        }
+
+
+        $(function() {
+            $('[data-tooltip="tooltip"]').tooltip()
+        })
         </script>
+
+        <!-- Alert success -->
+        <?php
+        if (session()->has('success')) : ?>
+        <script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: '<?= session('success') ?>',
+            icon: 'success',
+        })
+        </script>
+        <?php endif; ?>
+
+        <!-- Alert error -->
+        <?php
+        if (session()->has('error')) : ?>
+        <script>
+        Swal.fire({
+            title: 'Error!',
+            text: '<?= session('error') ?>',
+            icon: 'error',
+        })
+        </script>
+        <?php endif; ?>
 
 </body>
 
