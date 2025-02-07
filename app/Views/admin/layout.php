@@ -81,29 +81,20 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item <?= $title == 'User' ? 'active' : "" ?>">
-                <a class="nav-link" href="<?= base_url('Admin/user') ?>">
-                    <i class="fas fa-user"></i>
-                    <span>User</span></a>
+            <li class="nav-item <?= $title == 'Penilaian' ? 'active' : "" ?>">
+                <a class="nav-link" href="<?= base_url('Admin/penilaian') ?>">
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>Penialaian</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item <?= $title == 'Penilaian' ? 'active' : "" ?>">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
-                    aria-expanded="true" aria-controls="collapseFive">
-                    <i class="fas fa-star-half-alt"></i>
-                    <span>Penilaian</span>
-                </a>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Menu :</h6>
-                        <a class="collapse-item" href="<?= base_url('Admin/periode') ?>">Periode Penilaian</a>
-                        <a class="collapse-item" href="<?= base_url('Admin/penilaian') ?>">Penilaian Karyawan</a>
-                    </div>
-                </div>
+            <li class="nav-item <?= $title == 'User' ? 'active' : "" ?>">
+                <a class="nav-link" href="<?= base_url('Admin/user') ?>">
+                    <i class="fas fa-user"></i>
+                    <span>User</span></a>
             </li>
 
             <!-- Divider -->
@@ -241,102 +232,102 @@
         <script src="<?= base_url('template/') ?>vendor/select2/select2.min.js"></script>
 
         <script>
-        // Logout
-        function con() {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Anda akan logout!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Logout'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '<?= base_url('logout') ?>';
-                }
+            // Logout
+            function con() {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Anda akan logout!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Logout'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '<?= base_url('logout') ?>';
+                    }
+                })
+            }
+
+            // Hapus Kriteria
+            function hapus_kriteria(id) {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Anda akan menghapus kriteria!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Hapus'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '<?= base_url('Admin/kriteria/delete/') ?>' + id;
+                    }
+                })
+            }
+
+            // Hapus Sub Kriteria
+            function hapus_sub_kriteria(id) {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Anda akan menghapus sub kriteria!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Hapus'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '<?= base_url('Admin/sub_kriteria/delete/') ?>' + id;
+                    }
+                })
+            }
+
+            // Hapus Alternatif
+            function hapus_alternatif(id) {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Anda akan menghapus alternatif!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Hapus'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '<?= base_url('Admin/alternatif/delete/') ?>' + id;
+                    }
+                })
+            }
+
+
+            $(function() {
+                $('[data-tooltip="tooltip"]').tooltip()
             })
-        }
-
-        // Hapus Kriteria
-        function hapus_kriteria(id) {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Anda akan menghapus kriteria!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Hapus'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '<?= base_url('Admin/kriteria/delete/') ?>' + id;
-                }
-            })
-        }
-
-        // Hapus Sub Kriteria
-        function hapus_sub_kriteria(id) {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Anda akan menghapus sub kriteria!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Hapus'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '<?= base_url('Admin/sub_kriteria/delete/') ?>' + id;
-                }
-            })
-        }
-
-        // Hapus Alternatif
-        function hapus_alternatif(id) {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Anda akan menghapus alternatif!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Hapus'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '<?= base_url('Admin/alternatif/delete/') ?>' + id;
-                }
-            })
-        }
-
-
-        $(function() {
-            $('[data-tooltip="tooltip"]').tooltip()
-        })
         </script>
 
         <!-- Alert success -->
         <?php
         if (session()->has('success')) : ?>
-        <script>
-        Swal.fire({
-            title: 'Berhasil!',
-            text: '<?= session('success') ?>',
-            icon: 'success',
-        })
-        </script>
+            <script>
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: '<?= session('success') ?>',
+                    icon: 'success',
+                })
+            </script>
         <?php endif; ?>
 
         <!-- Alert error -->
         <?php
         if (session()->has('error')) : ?>
-        <script>
-        Swal.fire({
-            title: 'Error!',
-            text: '<?= session('error') ?>',
-            icon: 'error',
-        })
-        </script>
+            <script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: '<?= session('error') ?>',
+                    icon: 'error',
+                })
+            </script>
         <?php endif; ?>
 
 </body>

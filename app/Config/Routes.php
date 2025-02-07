@@ -23,4 +23,7 @@ $routes->group('Admin', static function ($routes) {
     $routes->post('alternatif/add', 'alternatif::add_alternatif', ['filter' => 'adminGuard']);
     $routes->post('alternatif/edit/(:any)', 'alternatif::edit_alternatif/$1', ['filter' => 'adminGuard']);
     $routes->get('alternatif/delete/(:any)', 'alternatif::delete_alternatif/$1', ['filter' => 'adminGuard']);
+    $routes->get('penilaian', 'Admin::penilaian', ['filter' => 'adminGuard']);
+    $routes->post('penilaian/input/(:any)', 'Penilaian::add_penilaian/$1', ['filter' => 'adminGuard']);
+    $routes->post('penilaian/edit', 'Penilaian::edit_penilaian', ['filter' => 'adminGuard']);
 });

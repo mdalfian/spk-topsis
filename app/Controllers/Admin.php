@@ -4,18 +4,21 @@ namespace App\Controllers;
 
 use App\Models\AlternatifModel;
 use App\Models\KriteriaModel;
+use App\Models\PenilaianModel;
 use Config\Database;
 
 class Admin extends BaseController
 {
     protected $kriteriaModel;
     protected $alternatifModel;
+    protected $penilaianModel;
     protected $db;
 
     public function __construct()
     {
         $this->kriteriaModel = new KriteriaModel();
         $this->alternatifModel = new AlternatifModel();
+        $this->penilaianModel = new PenilaianModel();
         $this->db = Database::connect();
     }
 
@@ -57,5 +60,18 @@ class Admin extends BaseController
         ];
 
         return view('admin/alternatif', $data);
+    }
+
+    public function penilaian()
+    {
+        $data = [
+            'title' => 'Penilaian',
+            'alternatif' => $this->alternatifModel->get_alternatif()->getResult(),
+            'kriteria' => $this->kriteriaModel->get_kriteria()->getResult(),
+            'sub_kriteria' => $this->kriteriaModel->get_sub_kriteria()->getResult(),
+            'penilaian' => $this->penilaianModel->get_penilaian()->getResult(),
+        ];
+
+        return view('admin/penilaian', $data);
     }
 }
