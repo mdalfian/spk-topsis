@@ -74,4 +74,18 @@ class Admin extends BaseController
 
         return view('admin/penilaian', $data);
     }
+
+    public function perhitungan()
+    {
+        $data = [
+            'title' => 'Perhitungan',
+            'alternatif' => $this->alternatifModel->get_alternatif()->getResult(),
+            'kriteria' => $this->kriteriaModel->get_kriteria()->getResult(),
+            'sub_kriteria' => $this->kriteriaModel->get_sub_kriteria()->getResult(),
+            'perhitungan' => $this->penilaianModel->get_perhitungan()->getResult(),
+            'penilaian' => $this->penilaianModel->get_penilaian()->getResult(),
+        ];
+
+        return view('admin/perhitungan', $data);
+    }
 }

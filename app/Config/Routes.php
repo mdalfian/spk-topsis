@@ -26,4 +26,5 @@ $routes->group('Admin', static function ($routes) {
     $routes->get('penilaian', 'Admin::penilaian', ['filter' => 'adminGuard']);
     $routes->post('penilaian/input/(:any)', 'Penilaian::add_penilaian/$1', ['filter' => 'adminGuard']);
     $routes->post('penilaian/edit', 'Penilaian::edit_penilaian', ['filter' => 'adminGuard']);
+    $routes->get('perhitungan', 'Admin::perhitungan', ['filter' => 'adminGuard']);
 });

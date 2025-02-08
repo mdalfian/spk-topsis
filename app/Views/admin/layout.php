@@ -91,6 +91,16 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+            <li class="nav-item <?= $title == 'Perhitungan' ? 'active' : "" ?>">
+                <a class="nav-link" href="<?= base_url('Admin/perhitungan') ?>">
+                    <i class="fas fa-calculator"></i>
+                    <span>Perhitungan</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
             <li class="nav-item <?= $title == 'User' ? 'active' : "" ?>">
                 <a class="nav-link" href="<?= base_url('Admin/user') ?>">
                     <i class="fas fa-user"></i>

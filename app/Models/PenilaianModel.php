@@ -23,6 +23,16 @@ class PenilaianModel extends Model
             ->get();
     }
 
+    function get_perhitungan()
+    {
+        return $this->db->table('penilaian tb1')
+            ->select('tb1.*,tb2.nama_kriteria,tb3.nama_alternatif')
+            ->join('kriteria tb2', 'tb2.id_kriteria = tb1.id_kriteria')
+            ->join('alternatif tb3', 'tb3.id_alternatif = tb1.id_alternatif')
+            ->groupBy('tb1.id_alternatif')
+            ->get();
+    }
+
     function insert_penilaian($data, $id)
     {
         return [
