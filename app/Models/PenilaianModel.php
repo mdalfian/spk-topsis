@@ -45,4 +45,12 @@ class PenilaianModel extends Model
     {
         return $this->db->table('penilaian')->updateBatch($data, 'id_penilaian');
     }
+
+    function get_total()
+    {
+        return $this->db->table('penilaian')
+            ->select('id_kriteria,SUM(nilai) AS total')
+            ->groupBy('id_kriteria')
+            ->get();
+    }
 }

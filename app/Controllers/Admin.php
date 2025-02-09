@@ -84,6 +84,7 @@ class Admin extends BaseController
             'sub_kriteria' => $this->kriteriaModel->get_sub_kriteria()->getResult(),
             'perhitungan' => $this->penilaianModel->get_perhitungan()->getResult(),
             'penilaian' => $this->penilaianModel->get_penilaian()->getResult(),
+            'total' => $this->penilaianModel->get_total()->getResult(),
         ];
 
         return view('admin/perhitungan', $data);
