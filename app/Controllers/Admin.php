@@ -85,6 +85,8 @@ class Admin extends BaseController
             'perhitungan' => $this->penilaianModel->get_perhitungan()->getResult(),
             'penilaian' => $this->penilaianModel->get_penilaian()->getResult(),
             'total' => $this->penilaianModel->get_total()->getResult(),
+            'normalisasi' => $this->penilaianModel->get_normalisasi()->getResult(),
+            'solusi' => $this->penilaianModel->get_solusi()->getResult(),
         ];
 
         return view('admin/perhitungan', $data);

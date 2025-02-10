@@ -49,7 +49,28 @@ class PenilaianModel extends Model
     function get_total()
     {
         return $this->db->table('penilaian')
-            ->select('id_kriteria,SUM(nilai) AS total')
+            ->select('id_kriteria,SUM(pow(nilai,2)) AS total')
+            ->groupBy('id_kriteria')
+            ->get();
+    }
+
+    function get_normalisasi()
+    {
+        return $this->db->table('penilaian tb1')
+            ->select('tb1.*,MAX(tb1.nilai / SQRT(tb2.total) * tb3.bobot_kriteria) AS max,MIN(tb1.nilai / SQRT(tb2.total) * tb3.bobot_kriteria) AS min,tb3.kode_kriteria')
+            ->join('(SELECT id_kriteria,SUM(pow(nilai,2)) AS total FROM penilaian GROUP BY id_kriteria) AS tb2', 'tb1.id_kriteria = tb2.id_kriteria')
+            ->join('kriteria tb3', 'tb1.id_kriteria = tb3.id_kriteria')
+            ->groupBy('id_kriteria')
+            ->get();
+    }
+
+    function get_solusi()
+    {
+        return $this->db->table('penilaian tb1')
+            ->select('tb1.*,(tb1.nilai / SQRT(tb2.total) * tb3.bobot_kriteria) AS normalisasi,tb4.min,tb4.max,(SQRT(SUM(pow((tb1.nilai / SQRT(tb2.total) * tb3.bobot_kriteria) - IF(tb3.jenis_kriteria = \'Benefit\', tb4.max, tb4.min) , 2)))) AS solusi_positif,(SQRT(SUM(pow((tb1.nilai / SQRT(tb2.total) * tb3.bobot_kriteria) - IF(tb3.jenis_kriteria = \'Benefit\', tb4.min, tb4.max) , 2)))) AS solusi_negatif')
+            ->join('(SELECT id_kriteria,SUM(pow(nilai,2)) AS total FROM penilaian GROUP BY id_kriteria) AS tb2', 'tb1.id_kriteria = tb2.id_kriteria')
+            ->join('kriteria tb3', 'tb1.id_kriteria = tb3.id_kriteria')
+            ->join('(SELECT tb1.id_kriteria, MAX(tb1.nilai / SQRT(tb2.total) * tb3.bobot_kriteria) AS max, MIN(tb1.nilai / SQRT(tb2.total) * tb3.bobot_kriteria) AS min,tb3.kode_kriteria FROM penilaian tb1 JOIN (SELECT id_kriteria,SUM(pow(nilai,2)) AS total FROM penilaian GROUP BY id_kriteria) AS tb2 ON tb1.id_kriteria = tb2.id_kriteria JOIN kriteria tb3 ON tb1.id_kriteria = tb3.id_kriteria GROUP BY id_kriteria) tb4', 'tb1.id_kriteria = tb4.id_kriteria')
             ->groupBy('id_kriteria')
             ->get();
     }

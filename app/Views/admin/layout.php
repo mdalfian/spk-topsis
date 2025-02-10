@@ -242,102 +242,133 @@
         <script src="<?= base_url('template/') ?>vendor/select2/select2.min.js"></script>
 
         <script>
-            // Logout
-            function con() {
-                Swal.fire({
-                    title: 'Apakah anda yakin?',
-                    text: "Anda akan logout!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Logout'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '<?= base_url('logout') ?>';
-                    }
-                })
-            }
-
-            // Hapus Kriteria
-            function hapus_kriteria(id) {
-                Swal.fire({
-                    title: 'Apakah anda yakin?',
-                    text: "Anda akan menghapus kriteria!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Hapus'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '<?= base_url('Admin/kriteria/delete/') ?>' + id;
-                    }
-                })
-            }
-
-            // Hapus Sub Kriteria
-            function hapus_sub_kriteria(id) {
-                Swal.fire({
-                    title: 'Apakah anda yakin?',
-                    text: "Anda akan menghapus sub kriteria!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Hapus'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '<?= base_url('Admin/sub_kriteria/delete/') ?>' + id;
-                    }
-                })
-            }
-
-            // Hapus Alternatif
-            function hapus_alternatif(id) {
-                Swal.fire({
-                    title: 'Apakah anda yakin?',
-                    text: "Anda akan menghapus alternatif!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Hapus'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '<?= base_url('Admin/alternatif/delete/') ?>' + id;
-                    }
-                })
-            }
-
-
-            $(function() {
-                $('[data-tooltip="tooltip"]').tooltip()
+        // Logout
+        function con() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan logout!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Logout'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '<?= base_url('logout') ?>';
+                }
             })
+        }
+
+        // Hapus Kriteria
+        function hapus_kriteria(id) {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan menghapus kriteria!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '<?= base_url('Admin/kriteria/delete/') ?>' + id;
+                }
+            })
+        }
+
+        // Hapus Sub Kriteria
+        function hapus_sub_kriteria(id) {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan menghapus sub kriteria!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '<?= base_url('Admin/sub_kriteria/delete/') ?>' + id;
+                }
+            })
+        }
+
+        // Hapus Alternatif
+        function hapus_alternatif(id) {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan menghapus alternatif!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '<?= base_url('Admin/alternatif/delete/') ?>' + id;
+                }
+            })
+        }
+
+
+        $(function() {
+            $('[data-tooltip="tooltip"]').tooltip()
+        })
+
+        // $(function() {
+        //     var highest = {},
+        //         highestValues = {};
+
+        //     $('#terbobot tbody td').each(function(i, td) {
+        //         var colIndex = $(td).index() - 1;
+        //         var rowIndex = $(td).parent().index();
+        //         var currValue = parseInt($(td).text(), 10);
+
+        //         console.log(colIndex);
+
+        //         var currHighest = highestValues[colIndex] || 0;
+
+        //         if (currValue > currHighest) {
+        //             highest[colIndex] = [rowIndex];
+        //             highestValues[colIndex] = currValue;
+        //         } else if (currValue === currHighest) {
+        //             highest[colIndex].push(rowIndex);
+        //         }
+        //     });
+
+        //     console.log(highest, highestValues);
+
+        //     for (col in highest) {
+        //         for (row in highest[col]) {
+        //             $('#terbobot tbody tr').eq(highest[col][row]).find('td').eq(col).css('background',
+        //                 'yellow');
+        //         }
+        //     }
+        // });
         </script>
 
         <!-- Alert success -->
         <?php
         if (session()->has('success')) : ?>
-            <script>
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: '<?= session('success') ?>',
-                    icon: 'success',
-                })
-            </script>
+        <script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: '<?= session('success') ?>',
+            icon: 'success',
+        })
+        </script>
         <?php endif; ?>
 
         <!-- Alert error -->
         <?php
         if (session()->has('error')) : ?>
-            <script>
-                Swal.fire({
-                    title: 'Error!',
-                    text: '<?= session('error') ?>',
-                    icon: 'error',
-                })
-            </script>
+        <script>
+        Swal.fire({
+            title: 'Error!',
+            text: '<?= session('error') ?>',
+            icon: 'error',
+        })
+        </script>
         <?php endif; ?>
 
 </body>

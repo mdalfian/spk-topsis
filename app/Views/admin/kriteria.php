@@ -88,7 +88,7 @@
                                                     <div class="control-group mb-3 col">
                                                         <label class="control-label" for="bobot">Bobot</label>
                                                         <div class="controls">
-                                                            <input type="number" name="bobot_kriteria" id="bobot"
+                                                            <input type="text" name="bobot_kriteria" id="bobot"
                                                                 placeholder="Masukkan Bobot"
                                                                 class="form-control bg-light small"
                                                                 value="<?= $kri->bobot_kriteria ?>" required>
@@ -166,7 +166,7 @@
                             <div class="control-group mb-3 col">
                                 <label class="control-label" for="bobot">Bobot</label>
                                 <div class="controls">
-                                    <input type="number" name="bobot_kriteria" id="bobot" placeholder="Masukkan Bobot"
+                                    <input type="text" name="bobot_kriteria" id="bobot" placeholder="Masukkan Bobot"
                                         class="form-control bg-light small" required>
                                 </div>
                             </div>
